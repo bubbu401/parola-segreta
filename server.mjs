@@ -1,0 +1,11 @@
+import http from 'node:http';
+
+const porta = process.env.PORTA;
+
+function rispondi (richiesta , risposta){
+risposta.end ("parco\n");
+}
+
+const server = http.createServer(rispondi);
+server.listen(porta);
+console.log("il server ascolta la porta ", porta);
