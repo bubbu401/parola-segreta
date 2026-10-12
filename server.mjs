@@ -3,7 +3,7 @@ import http from 'node:http';
 const porta = process.env.PORTA;
 
 function rispondi (richiesta , risposta){
-risposta.end ("parco\n");
+risposta.end ("bella\n");
 }
 
 const server = http.createServer(rispondi);
