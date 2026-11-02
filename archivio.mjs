@@ -1,17 +1,18 @@
+import { DatabaseSync } from 'node:sqlite';
 import { valuta } from './regole.mjs';
+const db = new DatabaseSync('dati.db');
+export function parolaEsiste(parola) {
+const riga = db.prepare('SELECT id FROM parole WHERE parola = ?').get(parola);
+return riga !== undefined;
+}const partite = [];
 
-
-const parole = ['parco', 'sedia', 'fiume', 'gatto', 'treno'];
-const partite = [];
 export function creaPartita() {
-const numero = Math.floor(Math.random() * parole.length);
+const riga = db.prepare('SELECT parola FROM segrete ORDER BY random() LIMIT 1').get();
 const partita = {
 id: partite.length + 1,
-segreta: parole[numero],
+segreta: riga.parola,
 tentativi: [],
 finita: false
-
-
 };
 partite.push(partita);
 return partita;
